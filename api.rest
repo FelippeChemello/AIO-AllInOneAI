@@ -1,0 +1,11 @@
+@baseURL = http://localhost:8000
+
+# @name HealthCheck
+
+GET {{baseURL}}/
+
+###
+
+# @name Bing
+
+POST {{baseURL}}/poe
