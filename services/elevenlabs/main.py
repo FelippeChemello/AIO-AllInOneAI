@@ -17,6 +17,6 @@ def synthesize(voice: str, req: dict):
     return elevenlabs_tts.synthesize(voice, req)
 
 
-@router.get("/v1/usage")
+@router.get("/usage")
 def get_usage():
     return elevenlabs_tts.get_all_usage()
