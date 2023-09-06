@@ -1,6 +1,7 @@
+import io
 import os
 import requests
-import io
+from datetime import datetime
 from fastapi.responses import StreamingResponse, JSONResponse
 
 from services.elevenlabs.TTS import TTS
@@ -23,17 +24,25 @@ class ElevenLabsTTS(TTS):
         return {
             "usage": user["subscription"]["character_count"],
             "limit": user["subscription"]["character_limit"],
+            "reset": datetime.fromtimestamp(
+                user["subscription"]["next_character_count_reset_unix"]
+            ),
         }
 
     def get_all_usage(self):
         return [self.get_usage(api_key) for api_key in self.users]
 
     def get_api_key(self, need_character_count):
+        api_keys = []
         for api_key in self.users:
             usage = self.get_usage(api_key)
             if usage["usage"] + need_character_count < usage["limit"]:
-                return api_key
-
+                api_keys.append((api_key, usage["reset"]))
+        if api_keys:
+            return min(api_keys, key=lambda x: x[1])[0]
+        else:
+            return None
+            
     def get_voices(self):
         return requests.get(self.base_url + "/v1/voices").json()
 
