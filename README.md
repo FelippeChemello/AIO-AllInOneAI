@@ -2,11 +2,12 @@
 
 ## Description
 
-This is a proxy server that unifies the API of OpenAI, Bing, Bard, POE and Claude.
-Under the hood, it uses the following reverse engineering projects:
+AIO is a simple API for proxying requests to other AI services.
 
-- [EdgeGPT](https://github.com/acheong08/EdgeGPT)
-- [BardAPI](https://github.com/dsdanielpark/Bard-API)
+### Services
+
+- [ElevenLabs](https://elevenlabs.io/)
+
 
 ## Running
 

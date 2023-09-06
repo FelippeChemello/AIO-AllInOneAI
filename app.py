@@ -11,7 +11,7 @@ app = FastAPI()
 
 @app.get("/")
 def status():
-    return {"status": "ok"}
+    return {"status": "ok!"}
 
 
 @app.get("/llm/models")
@@ -21,3 +21,8 @@ def llm_models():
 
 
 app.include_router(elevenlabs_router, prefix="/elevenlabs")
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)
