@@ -1,6 +1,4 @@
+# Default
 fastapi
 uvicorn[standard]
 python-dotenv
-
-EdgeGPT
-poe-api

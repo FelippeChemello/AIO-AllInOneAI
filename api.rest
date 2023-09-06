@@ -6,6 +6,19 @@ GET {{baseURL}}/
 
 ###
 
-# @name Bing
+# @name get_elevenlabs_voices
 
-POST {{baseURL}}/poe
+GET {{baseURL}}/elevenlabs/v1/voices
+
+### 
+
+# @name generate_tts
+
+POST {{baseURL}}/elevenlabs/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM
+Content-Type: application/json
+
+{
+    "text": "Olá World!",
+    "model_id": "eleven_multilingual_v2"
+
+}

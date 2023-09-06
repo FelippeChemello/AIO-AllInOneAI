@@ -1,17 +1,23 @@
 from dotenv import load_dotenv
+
+load_dotenv()
+
 from fastapi import FastAPI
 
-from services import poe_client
+from services.elevenlabs.main import router as elevenlabs_router
 
 app = FastAPI()
 
+
 @app.get("/")
 def status():
-    return { "status": "ok" }
+    return {"status": "ok"}
 
-@app.get('/models')
-@app.get('/v1/models')
-def models():
+
+@app.get("/llm/models")
+@app.get("/llm/v1/models")
+def llm_models():
     return {}
 
-app.include_router(poe_client.router, prefix="/poe", tags=["poe"])
+
+app.include_router(elevenlabs_router, prefix="/elevenlabs")
