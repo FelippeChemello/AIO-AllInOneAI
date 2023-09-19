@@ -1,14 +1,17 @@
 @baseURL = http://localhost:8000
+@apikey = {{$dotenv API_KEYS}}
 
 # @name HealthCheck
 
 GET {{baseURL}}/
+xi-api-key: {{apikey}}
 
 ###
 
 # @name get_elevenlabs_voices
 
 GET {{baseURL}}/elevenlabs/v1/voices
+xi-api-key: {{apikey}}
 
 ### 
 
@@ -16,6 +19,7 @@ GET {{baseURL}}/elevenlabs/v1/voices
 
 POST {{baseURL}}/elevenlabs/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM
 Content-Type: application/json
+xi-api-key: {{apikey}}
 
 {
     "text": "Olá World!",
