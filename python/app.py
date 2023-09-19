@@ -14,8 +14,10 @@ app = FastAPI()
 async def auth_middleware(request, call_next):
     allowed_api_keys = os.getenv("API_KEYS").split(",")
     api_key = request.headers.get("xi-api-key") if request.headers.get("xi-api-key") else request.query_params.get("xi-api-key")
+    paths_without_auth = ["/", "/docs", "/openapi.json", "/redoc"]
+    path = request.url.path
 
-    if api_key and api_key in allowed_api_keys:
+    if path in paths_without_auth or (api_key and api_key in allowed_api_keys):
         return await call_next(request)
     else:
         return Response("Unauthorized", status_code=401)
