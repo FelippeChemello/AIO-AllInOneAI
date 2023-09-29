@@ -1,0 +1,18 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "CodeStack",
+    "name_for_model": "aio",
+    "description_for_human": "CodeStack is an All-In-One platform for developers.",
+    "description_for_model": "CodeStack is an All-In-One platform for developers.",
+    "auth": {
+        "type": "user_http",
+        "authorization_type": "bearer"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "https://aio.fly.dev/openai-plugin/openapi.json"
+    },
+    "logo_url": "https://avatars.githubusercontent.com/u/29099474",
+    "contact_email": "felippe@codestack.me",
+    "legal_info_url": "https://codestack.me/"
+}

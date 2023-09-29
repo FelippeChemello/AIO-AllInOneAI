@@ -7,6 +7,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 load_dotenv()
 
 from services.elevenlabs.main import router as elevenlabs_router
+from services.openai_plugin.main import router as openai_plugin_router
 
 app = FastAPI()
 
@@ -14,7 +15,10 @@ app = FastAPI()
 async def auth_middleware(request, call_next):
     allowed_api_keys = os.getenv("API_KEYS").split(",")
     api_key = request.headers.get("xi-api-key") if request.headers.get("xi-api-key") else request.query_params.get("xi-api-key")
-    paths_without_auth = ["/", "/docs", "/openapi.json", "/redoc"]
+    if not api_key:
+        api_key = request.headers.get("Authorization").replace("Bearer ", "") if request.headers.get("Authorization") else None
+
+    paths_without_auth = ["/", "/docs", "/openapi.json", "/redoc", "/openai-plugin/.well-known/ai-plugin.json", "/openai-plugin/.well-known/openapi.json"]
     path = request.url.path
 
     if path in paths_without_auth or (api_key and api_key in allowed_api_keys):
@@ -38,6 +42,7 @@ def llm_models():
 
 
 app.include_router(elevenlabs_router, prefix="/elevenlabs")
+app.include_router(openai_plugin_router, prefix="/openai-plugin")
 
 if __name__ == "__main__":
     import uvicorn

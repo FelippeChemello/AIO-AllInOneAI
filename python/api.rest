@@ -1,4 +1,5 @@
 @baseURL = http://localhost:8000
+# @baseURL = https://aio.fly.dev
 @apikey = {{$dotenv API_KEYS}}
 
 # @name HealthCheck
@@ -17,12 +18,28 @@ xi-api-key: {{apikey}}
 
 # @name generate_tts
 
-POST {{baseURL}}/elevenlabs/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM
+POST {{baseURL}}/elevenlabs/v1/text-to-speech/CYw3kZ02Hs0563khs1Fj
 Content-Type: application/json
 xi-api-key: {{apikey}}
 
 {
-    "text": "Olá World!",
+    "text": "CEO da Salesforce, apesar de ter incentivado retorno ao escritório, reconhece que engenheiros de software são “extremamente” produtivos ao trabalhar remotamente: Marc Benioff confessou que sua preferência pessoal também é pelo remoto e que nunca conseguiu trabalhar bem no escritório. No entanto, ele acredita que para outras funções, como vendas por exemplo, a produtividade é maior com equipes presenciais. As informações são da revista Fortune.",
     "model_id": "eleven_multilingual_v2"
-
 }
+
+### 
+
+# @name get_openai_manifest
+GET {{baseURL}}/openai-plugin/.well-known/ai-plugin.json
+
+### 
+
+# @name get_openapi_plugin_manifest
+GET {{baseURL}}/openai-plugin/.well-known/openapi.json
+
+### 
+
+# @name get_github_repository
+
+GET {{baseURL}}/openai-plugin/github/repository/felippechemello/felippechemello
+Authorization: Bearer {{apikey}}
