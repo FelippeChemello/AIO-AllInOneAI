@@ -2,7 +2,7 @@ app = "aio"
 primary_region = "gru"
 
 [build]
-  builder = "paketobuildpacks/builder:base"
+  builder = "paketobuildpacks/builder:full"
 
 [env]
   PORT = "8000"

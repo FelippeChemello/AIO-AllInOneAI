@@ -1,5 +1,5 @@
-@baseURL = http://localhost:8000
-# @baseURL = https://aio.fly.dev
+# @baseURL = http://localhost:8000
+@baseURL = https://aio.fly.dev
 @apikey = {{$dotenv API_KEYS}}
 
 # @name HealthCheck
@@ -23,7 +23,7 @@ Content-Type: application/json
 xi-api-key: {{apikey}}
 
 {
-    "text": "CEO da Salesforce, apesar de ter incentivado retorno ao escritório, reconhece que engenheiros de software são “extremamente” produtivos ao trabalhar remotamente: Marc Benioff confessou que sua preferência pessoal também é pelo remoto e que nunca conseguiu trabalhar bem no escritório. No entanto, ele acredita que para outras funções, como vendas por exemplo, a produtividade é maior com equipes presenciais. As informações são da revista Fortune.",
+    "text": "Hello World",
     "model_id": "eleven_multilingual_v2"
 }
 
@@ -43,3 +43,23 @@ GET {{baseURL}}/openai-plugin/.well-known/openapi.json
 
 GET {{baseURL}}/openai-plugin/github/repository/felippechemello/felippechemello
 Authorization: Bearer {{apikey}}
+
+###
+
+# @name get_llm_models
+
+GET {{baseURL}}/llm/v1/models
+Authorization: Bearer {{apikey}}
+
+###
+
+# @name generate_completion
+
+POST {{baseURL}}/llm/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{apikey}}
+
+{
+    "messages": [{"role": "user", "content": "Write a YouTube Script about nuclear fusion for a children's show."}],
+    "model": "gpt-3.5-turbo-16k-0613"
+}

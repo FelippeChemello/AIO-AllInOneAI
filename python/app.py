@@ -8,6 +8,7 @@ load_dotenv()
 
 from services.elevenlabs.main import router as elevenlabs_router
 from services.openai_plugin.main import router as openai_plugin_router
+from services.llm.main import router as llm_router
 
 app = FastAPI()
 
@@ -34,15 +35,9 @@ app.add_middleware(BaseHTTPMiddleware, dispatch=auth_middleware)
 def status():
     return {"status": "ok!"}
 
-
-@app.get("/llm/models")
-@app.get("/llm/v1/models")
-def llm_models():
-    return {}
-
-
 app.include_router(elevenlabs_router, prefix="/elevenlabs")
 app.include_router(openai_plugin_router, prefix="/openai-plugin")
+app.include_router(llm_router, prefix="/llm")
 
 if __name__ == "__main__":
     import uvicorn
