@@ -4,3 +4,4 @@ uvicorn[standard]
 python-dotenv
 requests
 g4f
+diskcache

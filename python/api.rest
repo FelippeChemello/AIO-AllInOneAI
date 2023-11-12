@@ -1,5 +1,5 @@
-# @baseURL = http://localhost:8000
-@baseURL = https://aio.fly.dev
+@baseURL = http://localhost:8000
+# @baseURL = https://aio.fly.dev
 @apikey = {{$dotenv API_KEYS}}
 
 # @name HealthCheck
@@ -60,6 +60,18 @@ Content-Type: application/json
 Authorization: Bearer {{apikey}}
 
 {
-    "messages": [{"role": "user", "content": "Write a YouTube Script about nuclear fusion for a children's show."}],
+    "messages": [{"role": "user", "content": "Hello"}],
     "model": "gpt-3.5-turbo-16k-0613"
+}
+
+###
+
+# @name generate_image
+
+POST {{baseURL}}/images/v1/images/generations
+Content-Type: application/json
+Authorization: Bearer {{apikey}}
+
+{
+    "prompt": "A painting of a dog in the style of Picasso"
 }

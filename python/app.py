@@ -9,6 +9,7 @@ load_dotenv()
 from services.elevenlabs.main import router as elevenlabs_router
 from services.openai_plugin.main import router as openai_plugin_router
 from services.llm.main import router as llm_router
+from services.image_diffusion.main import router as image_diffusion_router
 
 app = FastAPI()
 
@@ -38,6 +39,8 @@ def status():
 app.include_router(elevenlabs_router, prefix="/elevenlabs")
 app.include_router(openai_plugin_router, prefix="/openai-plugin")
 app.include_router(llm_router, prefix="/llm")
+app.include_router(image_diffusion_router, prefix="/images")
+
 
 if __name__ == "__main__":
     import uvicorn
