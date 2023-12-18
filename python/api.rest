@@ -53,7 +53,7 @@ Authorization: Bearer {{apikey}}
 
 ###
 
-# @name generate_completion
+# @name generate_completion_open_ai
 
 POST {{baseURL}}/llm/v1/chat/completions
 Content-Type: application/json
@@ -66,6 +66,19 @@ Authorization: Bearer {{apikey}}
 
 ###
 
+# @name generate_completion_anthropic
+
+POST {{baseURL}}/llm/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{apikey}}
+
+{
+    "prompt": "\n\nHuman: Hello, who are you? \n\nAssistant:",
+    "model": "claude-2.1"
+}
+
+###
+
 # @name generate_image
 
 POST {{baseURL}}/images/v1/images/generations
@@ -73,5 +86,5 @@ Content-Type: application/json
 Authorization: Bearer {{apikey}}
 
 {
-    "prompt": "A painting of a dog in the style of Picasso"
+    "prompt": "A painting of a Welsh Corgi"
 }
