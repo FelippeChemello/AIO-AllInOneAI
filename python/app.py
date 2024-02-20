@@ -34,7 +34,7 @@ app.add_middleware(BaseHTTPMiddleware, dispatch=auth_middleware)
 
 @app.get("/")
 def status():
-    return {"status": "ok!"}
+    return {"status": "ok!!!"}
 
 app.include_router(elevenlabs_router, prefix="/elevenlabs")
 app.include_router(openai_plugin_router, prefix="/openai-plugin")
