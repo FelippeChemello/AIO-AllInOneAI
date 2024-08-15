@@ -10,9 +10,9 @@ from services.elevenlabs.main import router as elevenlabs_router
 from services.openai_plugin.main import router as openai_plugin_router
 from services.llm.main import router as llm_router
 from services.image_diffusion.main import router as image_diffusion_router
+from services.aeneas.main import router as aeneas_router
 
 app = FastAPI()
-
 
 async def auth_middleware(request, call_next):
     allowed_api_keys = os.getenv("API_KEYS").split(",")
@@ -28,9 +28,7 @@ async def auth_middleware(request, call_next):
     else:
         return Response("Unauthorized", status_code=401)
 
-
 app.add_middleware(BaseHTTPMiddleware, dispatch=auth_middleware)
-
 
 @app.get("/")
 def status():
@@ -40,7 +38,7 @@ app.include_router(elevenlabs_router, prefix="/elevenlabs")
 app.include_router(openai_plugin_router, prefix="/openai-plugin")
 app.include_router(llm_router, prefix="/llm")
 app.include_router(image_diffusion_router, prefix="/images")
-
+app.include_router(aeneas_router, prefix="/aeneas")
 
 if __name__ == "__main__":
     import uvicorn

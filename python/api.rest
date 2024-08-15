@@ -29,6 +29,13 @@ xi-api-key: {{apikey}}
 
 ### 
 
+# @name tts_usage
+
+GET {{baseURL}}/elevenlabs/usage
+xi-api-key: {{apikey}}
+
+### 
+
 # @name get_openai_manifest
 GET {{baseURL}}/openai-plugin/.well-known/ai-plugin.json
 
@@ -88,3 +95,23 @@ Authorization: Bearer {{apikey}}
 {
     "prompt": "A painting of a Welsh Corgi"
 }
+
+###
+
+# @name forced_alignment
+
+POST {{baseURL}}/aeneas/align
+Authorization: Bearer {{apikey}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="text"
+
+Você sabia que testes de sangue revolucionários para diagnosticar Alzheimer podem estar disponíveis em breve? Isso poderá transformar a maneira como lidamos com uma das doenças mais desafiadoras da atualidade.
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="audio_file"; filename="audio.wav"
+Content-Type: audio/wav
+
+< /home/felippe/Projects/AIO-AllInOneAI/wavs/0.wav
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
